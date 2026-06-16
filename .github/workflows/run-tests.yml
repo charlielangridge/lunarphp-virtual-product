@@ -117,4 +117,4 @@ jobs:
 
       - name: Verify package classes autoload
         run: |
-          php -r 'require "vendor/autoload.php"; foreach (["Armezit\\Lunar\\VirtualProduct\\VirtualProductServiceProvider", "Armezit\\Lunar\\VirtualProduct\\VirtualProductHubServiceProvider", "Armezit\\Lunar\\VirtualProduct\\Http\\Livewire\\Components\\CodePool\\ProductSettings", "Armezit\\Lunar\\VirtualProduct\\Models\\CodePoolBatch"] as $class) { if (! class_exists($class)) { fwrite(STDERR, $class." missing".PHP_EOL); exit(1); } }'
+          php -r 'require "vendor/autoload.php"; foreach (["Armezit\\Lunar\\VirtualProduct\\VirtualProductServiceProvider", "Armezit\\Lunar\\VirtualProduct\\VirtualProductHubServiceProvider", "Armezit\\Lunar\\VirtualProduct\\Http\\Livewire\\Components\\CodePool\\ProductSettings", "Armezit\\Lunar\\VirtualProduct\\Models\\CodePoolBatch", "Armezit\\Lunar\\VirtualProduct\\Lunar\\Extensions\\ProductResourceExtension", "Armezit\\Lunar\\VirtualProduct\\Filament\\Resources\\ProductResource\\Pages\\ManageVirtualProduct"] as $class) { if (! class_exists($class)) { fwrite(STDERR, $class." missing".PHP_EOL); exit(1); } }'

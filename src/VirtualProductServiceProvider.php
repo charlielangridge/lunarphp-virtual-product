@@ -3,6 +3,9 @@
 namespace Armezit\Lunar\VirtualProduct;
 
 use Armezit\Lunar\VirtualProduct\Commands\ListVirtualProducts;
+use Armezit\Lunar\VirtualProduct\Lunar\Extensions\ProductResourceExtension;
+use Lunar\Admin\Filament\Resources\ProductResource;
+use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Hub\Http\Middleware\Authenticate;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -33,5 +36,16 @@ class VirtualProductServiceProvider extends PackageServiceProvider
         if (class_exists(Authenticate::class)) {
             $package->hasRoute('web');
         }
+    }
+
+    public function packageBooted(): void
+    {
+        if (! class_exists(LunarPanel::class) || ! class_exists(ProductResource::class)) {
+            return;
+        }
+
+        LunarPanel::extensions([
+            ProductResource::class => ProductResourceExtension::class,
+        ]);
     }
 }
